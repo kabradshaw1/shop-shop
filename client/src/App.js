@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -14,8 +14,8 @@ import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
+import { StoreProvider } from './utils/GlobalState';
 import OrderHistory from './pages/OrderHistory';
-import { StoreProvider } from "./utils/GlobalState";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,14 +43,14 @@ function App() {
         <div>
           <StoreProvider>
             <Nav />
-            <Switch>
+            <Routes>
               <Route 
                 path="/" 
                 element={<Home />} 
               />
               <Route 
                 path="/login" 
-                element={<Login />}
+                element={<Login />} 
               />
               <Route 
                 path="/signup" 
@@ -62,13 +62,13 @@ function App() {
               />
               <Route 
                 path="/products/:id" 
-                element={<Detail />}
+                element={<Detail />} 
               />
               <Route 
                 path="*" 
-                element={<NoMatch />}
+                element={<NoMatch />} 
               />
-            </Switch>
+            </Routes>
           </StoreProvider>
         </div>
       </Router>
